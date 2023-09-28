@@ -13,12 +13,12 @@ class SnapshotEquivalents(Enum):
 
 LANGS = [lang for lang in os.listdir(NEWS_DIR)]
 
-START_DATE = "2023-09-27 15:00:00"
+START_DATE = "2023-09-27 21:58:00"
 END_DATE = "2023-09-27 22:01:00"
-START_EPOCH = date_to_epoch(START_DATE)
-END_EPOCH = date_to_epoch(END_DATE)
-OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':','.')
-OUT_END_DATE = END_DATE.replace(' ', 'T').replace(':','.')
+START_EPOCH: float = date_to_epoch(START_DATE)
+END_EPOCH: float = date_to_epoch(END_DATE)
+OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
+OUT_END_DATE = END_DATE.replace(' ', 'T').replace(':', '.')
 
 
 def one_commons(main_items: list[dict], other_items: dict,
@@ -53,14 +53,14 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     """
 
     # Comment for using the links methods
-    simil_snapshot_fun = SnapshotEquivalents.LINKED
+    simil_snapshot_fun = SnapshotEquivalents.SPACY
 
     news_items = get_dict_items(START_EPOCH, END_EPOCH, NEWS_DIR)
     commons = {lang: {} for lang in news_items.keys()}
     for lang in commons.keys():
         commons[lang] = one_commons(news_items[lang], news_items, simil_snapshot_fun=simil_snapshot_fun)
     print(commons)
-    with open(f"../out/commons_{OUT_START_DATE}_{OUT_END_DATE}_LINKED.json", "w", encoding="utf-8") as f:
+    with open(f"../out/commons_{OUT_START_DATE}_{OUT_END_DATE}_SPACY.json", "w", encoding="utf-8") as f:
         json.dump(commons, f, indent=4)
         f.write("\n")
     return commons
