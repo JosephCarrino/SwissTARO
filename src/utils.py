@@ -124,12 +124,13 @@ def get_item_translations(item: dict) -> list[dict]:
     return translations
 
 
-def get_snapshost_translation(snapshot: list[dict]) -> list[dict]:
+def get_snapshot_translation(snapshot: list[dict]) -> list[dict]:
     """
     Get all translations of a snapshot
     """
     translations = []
     for article in snapshot:
+        translations.append(article["item_url"])
         for translation in get_item_translations(article):
             translations.append(translation)
     return translations
@@ -139,9 +140,9 @@ def has_equivalent_in_snapshot_linked(main_news: dict, news_snapshot: list[dict]
     """
     Check if a news item has an equivalent in a snapshot using translations links of Swissinfo
     """
-    translations = get_snapshost_translation(news_snapshot)
+    translations = get_snapshot_translation(news_snapshot)
     for translation in translations:
-        if translation["item_url"] == main_news["item_url"]:
+        if translation == main_news["item_url"]:
             return True
     return False
 
