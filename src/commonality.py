@@ -1,6 +1,6 @@
 import os
 import json
-from utils import NEWS_DIR
+from utils import NEWS_DIR, TRANSLATED_NEWS_DIR
 from utils import get_dict_items, date_to_epoch
 from utils import has_equivalent_in_snapshot_linked, has_equivalent_in_snapshot_spacy
 from enum import Enum
@@ -10,8 +10,11 @@ class SnapshotEquivalents(Enum):
     LINKED = has_equivalent_in_snapshot_linked
     SPACY = has_equivalent_in_snapshot_spacy
 
+WORKING_DIR = TRANSLATED_NEWS_DIR
+# WORKING_DIR = NEWS_DIR
 
-LANGS = [lang for lang in os.listdir(NEWS_DIR)]
+
+LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
 START_DATE = "2023-09-27 21:58:00"
 END_DATE = "2023-09-27 22:01:00"
@@ -55,7 +58,7 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     # Comment for using the links methods
     simil_snapshot_fun = SnapshotEquivalents.SPACY
 
-    news_items = get_dict_items(START_EPOCH, END_EPOCH, NEWS_DIR)
+    news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR)
     commons = {lang: {} for lang in news_items.keys()}
     for lang in commons.keys():
         commons[lang] = one_commons(news_items[lang], news_items, simil_snapshot_fun=simil_snapshot_fun)
