@@ -62,6 +62,10 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     commons = {lang: {} for lang in news_items.keys()}
     for lang in commons.keys():
         commons[lang] = one_commons(news_items[lang], news_items, simil_snapshot_fun=simil_snapshot_fun)
+    commons["info"] = {"start_date": START_DATE, "end_date": END_DATE, "len": {}}
+    for lang in news_items.keys():
+        infos = commons["info"]
+        infos["len"][lang] = len(news_items[lang])
     print(commons)
     with open(f"../out/commons_{OUT_START_DATE}_{OUT_END_DATE}_SPACY.json", "w", encoding="utf-8") as f:
         json.dump(commons, f, indent=4)

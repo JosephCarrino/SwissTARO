@@ -165,7 +165,6 @@ def are_similar(news_A: dict, news_B: dict) -> bool:
     :return: True if the similarity is above between threshold, False otherwise
     """
     similarity = news_A[PROCESSED_CONTENT_FIELD].similarity(news_B[PROCESSED_CONTENT_FIELD])
-    print(similarity)
     return similarity > SIMILARITY_THRESHOLD
 
 

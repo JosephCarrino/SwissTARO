@@ -71,11 +71,14 @@ def translate_one_item_argos(item: dict) -> dict:
             try:
                 item["en_title"] = translators[LANG_TO_TRANS[item["lang"]]].translate(item["title"])
                 item["en_content"] = translators[LANG_TO_TRANS[item["lang"]]].translate('\n'.join(item["content"]))
-                item["en_subtitle"] = translators[LANG_TO_TRANS[item["lang"]]].translate(item["subtitle"])
-                ALREADY_TRANSLATED[item["item_url"]] = {"en_title": item["en_title"], "en_content": item["en_content"],
-                                                        "en_subtitle": item["en_subtitle"]}
             except:
                 pass
+            try:
+                item["en_subtitle"] = translators[LANG_TO_TRANS[item["lang"]]].translate(item["subtitle"])
+            except:
+                item["en_subtitle"] = item["subtitle"]
+            ALREADY_TRANSLATED[item["item_url"]] = {"en_title": item["en_title"], "en_content": item["en_content"],
+                                                      "en_subtitle": item["en_subtitle"]}
     return item
 
 
@@ -94,11 +97,14 @@ def translate_one_item_google(item: dict) -> dict:
             try:
                 item["en_title"] = google_translator.translate(item["title"], src=TO_GOOGLE_LANG[item["lang"]], dest="en")
                 item["en_content"] = google_translator.translate('\n'.join(item["content"]), src=TO_GOOGLE_LANG[item["lang"]], dest="en")
-                item["en_subtitle"] = google_translator.translate(item["subtitle"], src=TO_GOOGLE_LANG[item["lang"]], dest="en")
-                ALREADY_TRANSLATED[item["item_url"]] = {"en_title": item["en_title"], "en_content": item["en_content"],
-                                                        "en_subtitle": item["en_subtitle"]}
             except:
                 pass
+            try:
+                item["en_subtitle"] = google_translator.translate(item["subtitle"], src=TO_GOOGLE_LANG[item["lang"]], dest="en")
+            except:
+                item["en_subtitle"] = item["subtitle"]
+            ALREADY_TRANSLATED[item["item_url"]] = {"en_title": item["en_title"], "en_content": item["en_content"],
+                                                    "en_subtitle": item["en_subtitle"]}
     return item
 
 
@@ -110,6 +116,7 @@ def full_pipe_one_snap(snap_dir: str) -> list[dict]:
 def translate_all():
     for language in os.listdir(NEWS_DIR):
         print(language)
+        ALREADY_TRANSLATED = {}
         for file in os.listdir(f"{NEWS_DIR}/{language}"):
             if file.endswith(".json"):
                 snap_dir = f"{NEWS_DIR}/{language}/{file}"
