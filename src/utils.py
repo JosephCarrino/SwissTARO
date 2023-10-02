@@ -21,7 +21,7 @@ def date_to_epoch(date: str) -> float:
     return (date - epoch).total_seconds()
 
 
-def in_range_epoch(file: str, start_epoch: int, end_epoch: int) -> bool:
+def in_range_epoch(file: str, start_epoch: float, end_epoch: float) -> bool:
     """
     Check if a file is in a given time range
     :param file: file to be checked
@@ -53,7 +53,7 @@ def get_lang_items(dir_to_check: str, lang: str) -> list[dict]:
     return items
 
 
-def get_lang_items(dir_to_check: str, lang: str, start_epoch: int, end_epoch: int) -> list[dict]:
+def get_lang_items(dir_to_check: str, lang: str, start_epoch: float, end_epoch: float) -> list[dict]:
     """
     Get all items in a given language section in a given time range
     :param dir_to_check: directory of scraped items
@@ -126,27 +126,44 @@ def get_item_translations(item: dict) -> list[dict]:
     return translations
 
 
-def get_snapshot_translation(snapshot: list[dict]) -> list[dict]:
+def get_snapshot_translation(snapshot: list[dict]) -> tuple[list[dict], list[str]]:
     """
     Get all translations of a snapshot
     """
     translations = []
+    true_urls = []
     for article in snapshot:
         translations.append(article["item_url"])
+        true_urls.append(article["item_url"])
         for translation in get_item_translations(article):
             translations.append(translation)
+            true_urls.append(article["item_url"])
+    return translations, true_urls
+
+
+def get_all_translations(news_items: dict) -> dict:
+    CONSIDERED_LANGUAGES = ["Italiano", "Français", "Deutsch", "English"]
+    translations = {lang: {} for lang in news_items.keys()}
+    for lang in news_items.keys():
+        for item in news_items[lang]:
+            for trans_lang in item["translations"].keys():
+                if trans_lang in CONSIDERED_LANGUAGES:
+                    translations[lang][trans_lang] = item["translations"][trans_lang]
     return translations
 
 
-def has_equivalent_in_snapshot_linked(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) -> bool:
+
+
+def has_equivalent_in_snapshot_linked(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) \
+        -> Union[bool, str]:
     """
     Check if a news item has an equivalent in a snapshot using translations links of Swissinfo
     """
-    translations = get_snapshot_translation(news_snapshot)
-    for translation in translations:
+    translations, true_urls = get_snapshot_translation(news_snapshot)
+    for translation, true_url in zip(translations, true_urls):
         if translation == main_news["item_url"]:
-            return True
-    return False
+            return True, true_url
+    return False, ""
 
 
 def process_content(to_process: list[str]) -> Union[Doc, Doc]:
@@ -168,7 +185,8 @@ def are_similar(news_A: dict, news_B: dict) -> bool:
     return similarity > SIMILARITY_THRESHOLD
 
 
-def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) -> bool:
+def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) \
+        -> Union[bool, str]:
     """
     Check if a news item has an equivalent in a snapshot by using SpaCy similarity
     :param main_news: items to be checked
@@ -182,7 +200,7 @@ def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict],
         try:
             main_news[PROCESSED_CONTENT_FIELD] = process_content(main_news["en_content"])
         except:
-            return False
+            return False, ""
     for news_item in news_snapshot:
         if main_news["title"] is not None and news_item["title"] is not None:
             title_1 = max(main_news["title"], news_item["title"])
@@ -190,14 +208,14 @@ def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict],
             idx = f"{title_1}_{title_2}"
 
             if idx in simil_cache and simil_cache[idx] is True:
-                return True
+                return True, news_item["item_url"]
 
             if PROCESSED_CONTENT_FIELD not in news_item:
                 news_item[PROCESSED_CONTENT_FIELD] = process_content(news_item["en_content"])
 
             if are_similar(main_news, news_item):
                 simil_cache[idx] = True
-                return True
+                return True, news_item["item_url"]
 
             simil_cache[idx] = False
-    return False
+    return False, ""
