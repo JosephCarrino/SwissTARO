@@ -77,8 +77,12 @@ def translate_one_item_argos(item: dict) -> dict:
                 item["en_subtitle"] = translators[LANG_TO_TRANS[item["lang"]]].translate(item["subtitle"])
             except:
                 item["en_subtitle"] = item["subtitle"]
-            ALREADY_TRANSLATED[item["item_url"]] = {"en_title": item["en_title"], "en_content": item["en_content"],
-                                                      "en_subtitle": item["en_subtitle"]}
+            try:
+                ALREADY_TRANSLATED[item["item_url"]] = {"en_title": item["en_title"], "en_content": item["en_content"],
+                                                          "en_subtitle": item["en_subtitle"]}
+            except:
+                ALREADY_TRANSLATED[item["item_url"]] = {"en_title": "", "en_content": "", "en_subtitle": ""}
+
     return item
 
 
@@ -115,10 +119,15 @@ def full_pipe_one_snap(snap_dir: str) -> list[dict]:
 
 def translate_all():
     for language in os.listdir(NEWS_DIR):
-        print(language)
+        global ALREADY_TRANSLATED
         ALREADY_TRANSLATED = {}
+        print(language)
         for file in os.listdir(f"{NEWS_DIR}/{language}"):
+            check_dir = os.listdir(f"{OUT_DIR}/{language}")
             if file.endswith(".json"):
+                if file not in check_dir:
+                    print("Already Found")
+                    continue
                 snap_dir = f"{NEWS_DIR}/{language}/{file}"
                 translated_snap = full_pipe_one_snap(snap_dir)
                 with open(f"{OUT_DIR}/{language}/{file}", "w", encoding="utf-8") as f:

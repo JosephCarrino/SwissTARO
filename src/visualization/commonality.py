@@ -9,11 +9,11 @@ CHOSEN_METHOD = METHODS[0]
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = f"{BASE_DIR}\\..\\..\\out"
-FILE_DIR = f"commons_2023-09-27T21.58.00_2023-09-27T22.01.00_{CHOSEN_METHOD}.json"
+FILE_DIR = f"commons_2023-09-27T00.00.00_2023-10-03T23.59.00_{CHOSEN_METHOD}.json"
 FULL_DIR = f"{OUT_DIR}\\{FILE_DIR}"
 
 
-RATIO = True
+RATIO = False
 
 
 def main():

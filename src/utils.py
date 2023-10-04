@@ -66,13 +66,13 @@ def get_lang_items(dir_to_check: str, lang: str, start_epoch: float, end_epoch: 
     urls = []
     for file in os.listdir(f"{dir_to_check}/{lang}"):
         filepath = f"{dir_to_check}/{lang}/{file}"
-        with open(filepath, "r", encoding="utf-8") as f:
-            news = json.load(f)
-            for new in news:
-                if new["item_url"] not in urls:
-                    if in_range_epoch(file, start_epoch, end_epoch):
-                        urls.append(new["item_url"])
-                        items.append(new)
+        if in_range_epoch(file, start_epoch, end_epoch):
+            with open(filepath, "r", encoding="utf-8") as f:
+                news = json.load(f)
+                for new in news:
+                    if new["item_url"] not in urls:
+                            urls.append(new["item_url"])
+                            items.append(new)
     return items
 
 

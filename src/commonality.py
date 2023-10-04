@@ -11,14 +11,14 @@ class SnapshotEquivalents(Enum):
     SPACY = has_equivalent_in_snapshot_spacy
 
 
-WORKING_DIR = TRANSLATED_NEWS_DIR
-# WORKING_DIR = NEWS_DIR
+# WORKING_DIR = TRANSLATED_NEWS_DIR
+WORKING_DIR = NEWS_DIR
 
 
 LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
-START_DATE = "2023-09-27 21:58:00"
-END_DATE = "2023-09-27 22:01:00"
+START_DATE = "2023-09-27 00:00:00"
+END_DATE = "2023-10-03 23:59:00"
 START_EPOCH: float = date_to_epoch(START_DATE)
 END_EPOCH: float = date_to_epoch(END_DATE)
 OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
@@ -98,7 +98,7 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     print(commons)
 
     # Outputting to json
-    with open(f"../out/{commons}_{outpath_ending}", "w", encoding="utf-8") as f:
+    with open(f"../out/commons_{outpath_ending}", "w", encoding="utf-8") as f:
         json.dump(commons, f, indent=4)
         f.write("\n")
     with open(f"../out/paired_{outpath_ending}", "w", encoding="utf-8") as f:
