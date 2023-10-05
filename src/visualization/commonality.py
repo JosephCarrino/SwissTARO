@@ -1,8 +1,7 @@
-import json
 import os
 import seaborn as sns
-import pandas as pd
 import matplotlib.pyplot as plt
+from utils import get_cite_matrix
 
 METHODS = ["LINKED", "SPACY"]
 CHOSEN_METHOD = METHODS[0]
@@ -21,18 +20,13 @@ def main():
 
 
 def print_heatmap(ratio: bool):
-    data = {}
-    with open(FULL_DIR, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    infos = data["info"]
-    del data["info"]
-    df = pd.DataFrame(data, dtype=float)
+    df, infos = get_cite_matrix(FULL_DIR)
     if ratio:
         for lang in df.columns:
             df[lang] = df[lang].div(infos["len"][lang])
     cit_or_piv = "Cited" if CHOSEN_METHOD == METHODS[0] else "Pivot"
     with_ratio = f" divided by {cit_or_piv} total news" if ratio else ""
-    ax = sns.heatmap(df, annot=True, fmt=".2f", cmap="YlGnBu").set_title(f"News in common{with_ratio}")
+    sns.heatmap(df, annot=True, fmt=".2f", cmap="YlGnBu").set_title(f"News in common{with_ratio}")
     if CHOSEN_METHOD == METHODS[0]:
         plt.xlabel = "Cited"
         plt.ylabel = "Citing"
