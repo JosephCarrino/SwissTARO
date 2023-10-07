@@ -15,6 +15,8 @@ PROCESSED_CONTENT_FIELD = "cont_nlp"
 SIMILARITY_THRESHOLD = 0.9997
 
 
+
+
 def date_to_epoch(date: str) -> float:
     date = datetime.strptime(date, "%Y-%m-%d %H:%M:%S")
     epoch = datetime.utcfromtimestamp(0)

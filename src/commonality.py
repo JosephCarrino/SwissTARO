@@ -4,6 +4,7 @@ from utils import NEWS_DIR, TRANSLATED_NEWS_DIR
 from utils import get_dict_items, get_all_translations, date_to_epoch
 from utils import has_equivalent_in_snapshot_linked, has_equivalent_in_snapshot_spacy
 from enum import Enum
+from typing import Union
 
 
 class SnapshotEquivalents(Enum):
@@ -14,11 +15,10 @@ class SnapshotEquivalents(Enum):
 # WORKING_DIR = TRANSLATED_NEWS_DIR
 WORKING_DIR = NEWS_DIR
 
-
 LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
-START_DATE = "2023-09-27 00:00:00"
-END_DATE = "2023-10-03 23:59:00"
+START_DATE = "2023-09-27 21:58:00"
+END_DATE = "2023-09-27 22:01:00"
 START_EPOCH: float = date_to_epoch(START_DATE)
 END_EPOCH: float = date_to_epoch(END_DATE)
 OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
@@ -28,6 +28,8 @@ LANG_FORMATTER = {"Italiano": "ITA",
                   "English": "ENG",
                   "Français": "FRE",
                   "Deutsch": "GER"}
+
+LANGS_TRANSL = ["Italiano", "English", "Français", "Deutsch"]
 
 
 def one_commons(main_items: list[dict], other_items: dict,
@@ -108,26 +110,75 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     return commons
 
 
-def get_unpaired(news_items, paired):
-    translations_list = get_all_translations(news_items)
-    unpaired = {lang: {} for lang in news_items.keys()}
-    for lang in unpaired.keys():
-        unpaired[lang] = {lang: [] for lang in news_items.keys()}
-    for lang in translations_list.keys():
-        for transl_lang in translations_list[lang].keys():
-            found = False
-            for pair in paired:
-                if pair[0] != pair[1] and translations_list[lang][transl_lang] in pair:
-                    found = True
-                    break
-            if not found:
-                unpaired[lang][LANG_FORMATTER[transl_lang]].append(translations_list[lang][transl_lang])
+def get_unpaired(news_items: dict) -> dict[dict[str]]:
+    lang_urls = {lang: [item["item_url"] for item in news_items[lang]] for lang in news_items.keys()}
+    unpaired = {lang_1: {lang_2: [] for lang_2 in news_items.keys()} for lang_1 in news_items.keys()}
+    for lang in news_items.keys():
+        for elem in news_items[lang]:
+            for transl_lang, transl_url in elem["translations"].items():
+                if transl_lang in LANGS_TRANSL:
+                    if transl_url not in lang_urls[LANG_FORMATTER[transl_lang]]:
+                        unpaired[lang][LANG_FORMATTER[transl_lang]].append(transl_url)
+    unpaired["info"] = {"len": {lang: len(lang_urls[lang]) for lang in news_items.keys()},
+                        "unpaired_len": {lang_1: {lang_2: len(unpaired[lang_1][lang_2]) for lang_2 in news_items.keys()} for lang_1 in news_items.keys()}}
+    for lang_1 in news_items.keys():
+        unpaired["info"]["unpaired_len"][lang_1]["total"] = 0
+        for lang_2 in news_items.keys():
+            unpaired["info"]["unpaired_len"][lang_1]["total"] += len(unpaired[lang_1][lang_2])
+
+    outpath_ending = f"{OUT_START_DATE}_{OUT_END_DATE}.json"
+    with open(f"../out/unpaired_{outpath_ending}", "w", encoding="utf-8") as f:
+        json.dump(unpaired, f, indent=4)
+        f.write("\n")
     return unpaired
 
 
-def main():
-    run_one_commons()
+def get_versions_cardinalities() -> dict[str, Union[dict[str, int], dict]]:
+    """
+    Given a range of time, get the cardinalities of the set of news translated respectively in
+    two, three or four different languages
+    :return: A dictionary with one key for each possible number of citations and its cardinality and a dictionary
+    with the same sets but grouped by languages
+    """
+    outpath_ending = f"{OUT_START_DATE}_{OUT_END_DATE}_LINKED.json"
+    news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR)
+    already_found = []
 
+    by_language = {lang: {"2": 0, "3": 0, "4": 0} for lang in news_items.keys()}
+    overall = {"2": 0, "3": 0, "4": 0}
+
+    unpaired = get_unpaired(news_items)
+    list_langs = list(news_items.keys())
+    list_langs.reverse()
+    for lang in news_items.keys():
+        for elem in news_items[lang]:
+            if elem["item_url"] in already_found:
+                continue
+            n_transl = 1
+            broken = False
+            already_found.append(elem["item_url"])
+            for transl_lang, transl_url in elem["translations"].items():
+                if transl_lang in LANGS_TRANSL:
+                    if transl_url in already_found:
+                        broken = True
+                        break
+                    if transl_url not in unpaired[lang][LANG_FORMATTER[transl_lang]]:
+                        n_transl += 1
+                        already_found.append(transl_url)
+            if n_transl > 1 and not broken:
+                by_language[lang][str(n_transl)] += 1
+                overall[str(n_transl)] += 1
+    to_print = {"by_language": by_language, "overall": overall}
+    with open(f"../out/rev_cardinalities_{outpath_ending}", "w", encoding="utf-8") as f:
+        json.dump(to_print, f, indent=4)
+        f.write("\n")
+    return to_print
+
+
+def main():
+    # run_one_commons()
+    # get_versions_cardinalities()
+    get_unpaired(get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR))
 
 if __name__ == '__main__':
     main()
