@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = f"{BASE_DIR}\\..\\..\\out"
-JSON_DIR = f"{OUT_DIR}\\paired_2023-09-27T00.00.00_2023-10-03T23.59.00_LINKED.json"
+JSON_DIR = f"{OUT_DIR}\\paired_items\\2023-09-27T00.00.00_2023-10-03T23.59.00_LINKED.json"
 
 LANGS = ["ita", "eng", "fre", "ger"]
 
@@ -40,10 +40,6 @@ def get_values(json_dir: str, by_version: bool = False) -> dict:
     with open(json_dir, "r", encoding="utf-8") as f:
         data = json.load(f)
     item_cits = {}
-
-
-
-
 
     if by_version:
         citations_n = {version: {"2": 0, "3": 0, "4": 0} for version in LANGS}
