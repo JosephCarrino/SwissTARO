@@ -2,19 +2,26 @@ import json
 import os
 import matplotlib.pyplot as plt
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-OUT_DIR = f"{BASE_DIR}\\..\\..\\out\\cardinalities_stats"
-FILE_DIR = f"2023-09-27T00.01.00_2023-10-03T23.59.00.json"
-FULL_DIR = f"{OUT_DIR}\\{FILE_DIR}"
+# SEPARATOR = "\\"
+SEPARATOR = "/"
 
-RATIO = True
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUT_DIR = f"{BASE_DIR}{SEPARATOR}..{SEPARATOR}..{SEPARATOR}out{SEPARATOR}cardinalities_stats"
+FILE_DIR = f"2023-09-27T00.01.00_2023-10-03T23.59.00.json"
+FULL_DIR = f"{OUT_DIR}{SEPARATOR}{FILE_DIR}"
+
+# This is for dividing the values by total
+RATIO = False
+
+# This is for dividing the values of the couples by the number of the total news of the two versions
+COUPLES_TOTAL = True
 
 
 def main():
-    print_cardinalities(ratio=RATIO)
+    print_cardinalities(ratio=RATIO, couples_total=COUPLES_TOTAL)
 
 
-def print_cardinalities(ratio: bool):
+def print_cardinalities(ratio: bool, couples_total: bool):
     with open(FULL_DIR, "r", encoding="utf-8") as f:
         data = json.load(f)
     if ratio:
@@ -34,11 +41,18 @@ def print_cardinalities(ratio: bool):
                                          data["by_language_2"][lang].items()}
         data["by_couples"] = {key.upper(): round(value/total_by_couples, 2) for key, value in data["by_couples"].items()}
         data["by_triples"] = {key.upper(): round(value/total_by_triples, 2) for key, value in data["by_triples"].items()}
-    print_overall(data["overall"])
-    print_languages(data["by_language"])
-    print_languages_2(data["by_language_2"])
-    print_overall(data["by_couples"], xlabel="Different couples", title="News translated in two different languages")
-    print_overall(data["by_triples"], xlabel="Different triples", title="News translated in three different languages")
+    if couples_total and ratio:
+        raise (Exception("Cannot compute ratio and couples total together"))
+    if couples_total:
+        totals = compute_totals(data)
+        for key, value, total in zip(data["by_couples"].keys(), data["by_couples"].values(), totals):
+            data["by_couples"][key] = round(value/total, 2)
+    # print_overall(data["overall"])
+    # print_languages(data["by_language"])
+    # print_languages_2(data["by_language_2"])
+    # print_overall(data["by_couples"], xlabel="Different couples", title="News translated in two different languages divided by total news")
+    # print_overall(data["by_triples"], xlabel="Different triples", title="News translated in three different languages")
+    # print_languages_stacked(data["by_language_2"])
 
 
 def print_overall(data: dict, xlabel: str = "Different versions", ylabel: str = "News",
@@ -107,6 +121,58 @@ def print_languages_2(data: dict):
     plt.ylabel("News")
     plt.title(f"Translations of news in different versions by language")
     plt.show()
+
+
+def print_languages_stacked(data: dict):
+    ax = plt.subplot(111)
+    w = 0.7
+    colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
+    for i, key in enumerate(data.keys()):
+        j = i + 1
+        bars1 = ax.bar(j - (0.5 * (w / 2)), data[key]["1"], width=w / 4, align='center',
+                       color=colors[0])
+        autolabel(bars1, ax, true_h = data[key]["1"])
+        bars2 = ax.bar(j + (0.5 * (w / 2)), data[key]["2"], width=w / 4, align='center',
+                       color=colors[1])
+        autolabel(bars2, ax, true_h = data[key]["2"])
+        bars3 = ax.bar(j + (0.5 * (w / 2)), data[key]["3"], width=w / 4, align='center',
+                       color=colors[2], bottom=bars2[0].get_height())
+        autolabel(bars3, ax, true_h=data[key]["3"] +bars2[0].get_height())
+        bars4 = ax.bar(j + (0.5 * (w / 2)), data[key]["4"], width=w / 4, align='center',
+                       color=colors[3], bottom=bars2[0].get_height() + bars3[0].get_height())
+        autolabel(bars4, ax, true_h = data[key]["4"] + bars2[0].get_height() + bars3[0].get_height())
+
+        if i == len(data.keys()) - 1:
+            ax.legend([bars1, bars2, bars3, bars4], ["1 version", "2 versions", "3 versions", "4 versions"])
+    plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"])
+    plt.xlabel("Different versions")
+    plt.ylabel("News")
+    plt.title(f"Translations of news in different versions by language")
+    plt.show()
+
+def autolabel(rects, ax, true_h=-1):
+    for rect in rects:
+        h = rect.get_height()
+        if true_h != -1:
+            h = true_h
+        ax.text(rect.get_x() + rect.get_width() / 2., h, f"{rect.get_height():.2f}",
+                ha='center', va='bottom')
+
+
+def compute_totals(data: dict) -> list:
+    totals = []
+    for couple in data["by_couples"].keys():
+        splitted = couple.split("-")
+        elem_A = splitted[0].upper()
+        elem_B = splitted[1].upper()
+        total_A = 0
+        for key in data["by_language"][elem_A].keys():
+            total_A += data["by_language"][elem_A][key]
+        total_B = 0
+        for key in data["by_language"][elem_B].keys():
+            total_B += data["by_language"][elem_B][key]
+        totals.append(total_A + total_B)
+    return totals
 
 
 if __name__ == "__main__":
