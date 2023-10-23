@@ -2,19 +2,26 @@ import json
 import os
 import matplotlib.pyplot as plt
 
-# SEPARATOR = "\\"
-SEPARATOR = "/"
+SEPARATOR = "\\"
+# SEPARATOR = "/"
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = f"{BASE_DIR}{SEPARATOR}..{SEPARATOR}..{SEPARATOR}out{SEPARATOR}cardinalities_stats"
-FILE_DIR = f"2023-09-27T00.01.00_2023-10-03T23.59.00.json"
+FILE_DIR = f"2023-10-23T23.45.00_2023-10-23T23.59.00_no_carousels.json"
 FULL_DIR = f"{OUT_DIR}{SEPARATOR}{FILE_DIR}"
 
+CAROUSELS = ""
+if "carousels" in FILE_DIR:
+    if "no" in FILE_DIR:
+        CAROUSELS = " without carousels"
+    else:
+        CAROUSELS = " only carousels"
+
 # This is for dividing the values by total
-RATIO = False
+RATIO = True
 
 # This is for dividing the values of the couples by the number of the total news of the two versions
-COUPLES_TOTAL = True
+COUPLES_TOTAL = False
 
 
 def main():
@@ -24,6 +31,7 @@ def main():
 def print_cardinalities(ratio: bool, couples_total: bool):
     with open(FULL_DIR, "r", encoding="utf-8") as f:
         data = json.load(f)
+    data["by_language_2"] = data["by_language"].copy()
     if ratio:
         total_overall = sum([val for val in data["overall"].values()])
         total_by_lang = {lang: sum([val for val in data["by_language"][lang].values()]) for lang in data["by_language"].keys()}
@@ -34,7 +42,6 @@ def print_cardinalities(ratio: bool, couples_total: bool):
         total_by_couples = sum([val for val in data["by_couples"].values()])
         total_by_triples = sum([val for val in data["by_triples"].values()])
         data["overall"] = {key: round(value/total_overall, 2) for key, value in data["overall"].items()}
-        data["by_language_2"] = data["by_language"].copy()
         for lang in data["by_language"].keys():
             data["by_language"][lang] = {key: round(value/total_by_numbers[key], 2) for key, value in data["by_language"][lang].items()}
             data["by_language_2"][lang] = {key: round(value / total_by_lang[lang], 2) for key, value in
@@ -47,16 +54,17 @@ def print_cardinalities(ratio: bool, couples_total: bool):
         totals = compute_totals(data)
         for key, value, total in zip(data["by_couples"].keys(), data["by_couples"].values(), totals):
             data["by_couples"][key] = round(value/total, 2)
-    # print_overall(data["overall"])
-    # print_languages(data["by_language"])
-    # print_languages_2(data["by_language_2"])
-    # print_overall(data["by_couples"], xlabel="Different couples", title="News translated in two different languages divided by total news")
-    # print_overall(data["by_triples"], xlabel="Different triples", title="News translated in three different languages")
-    # print_languages_stacked(data["by_language_2"])
+
+    print_overall(data["overall"])
+    print_languages(data["by_language"])
+    print_languages_2(data["by_language_2"])
+    print_overall(data["by_couples"], xlabel="Different couples", title=f"News translated in two different languages divided by total news{CAROUSELS}")
+    print_overall(data["by_triples"], xlabel="Different triples", title=f"News translated in three different languages{CAROUSELS}")
+    print_languages_stacked(data["by_language_2"])
 
 
 def print_overall(data: dict, xlabel: str = "Different versions", ylabel: str = "News",
-                  title: str = "Translations of news in different languages"):
+                  title: str = f"Translations of news in different languages{CAROUSELS}"):
     ax = plt.subplot(111)
     bars = ax.bar(data.keys(), data.values())
     ax.bar_label(bars)
@@ -91,7 +99,7 @@ def print_languages(data: dict):
     plt.xticks([1, 2, 3, 4])
     plt.xlabel("Different versions")
     plt.ylabel("News")
-    plt.title(f"Translations of news in different versions by language")
+    plt.title(f"Translations of news in different versions by language{CAROUSELS}")
     plt.show()
 
 
@@ -119,7 +127,7 @@ def print_languages_2(data: dict):
     plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"])
     plt.xlabel("Different versions")
     plt.ylabel("News")
-    plt.title(f"Translations of news in different versions by language")
+    plt.title(f"Translations of news in different versions by language{CAROUSELS}")
     plt.show()
 
 
@@ -147,7 +155,7 @@ def print_languages_stacked(data: dict):
     plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"])
     plt.xlabel("Different versions")
     plt.ylabel("News")
-    plt.title(f"Translations of news in different versions by language")
+    plt.title(f"Translations of news in different versions by language{CAROUSELS}")
     plt.show()
 
 def autolabel(rects, ax, true_h=-1):

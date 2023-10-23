@@ -1,7 +1,7 @@
 import os
 import json
 import itertools
-from utils import NEWS_DIR, TRANSLATED_NEWS_DIR
+from utils import NEWS_DIR, TRANSLATED_NEWS_DIR, UseCarousels
 from utils import get_dict_items, get_all_translations, date_to_epoch
 from utils import has_equivalent_in_snapshot_linked, has_equivalent_in_snapshot_spacy
 from enum import Enum
@@ -13,13 +13,15 @@ class SnapshotEquivalents(Enum):
     SPACY = has_equivalent_in_snapshot_spacy
 
 
+CAROUSEL = ["_no_carousels", "_carousels", ""]
+
 # WORKING_DIR = TRANSLATED_NEWS_DIR
 WORKING_DIR = NEWS_DIR
 
 LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
-START_DATE = "2023-09-27 00:01:00"
-END_DATE = "2023-10-03 23:59:00"
+START_DATE = "2023-10-19 00:00:00"
+END_DATE = "2023-10-23 23:59:00"
 START_EPOCH: float = date_to_epoch(START_DATE)
 END_EPOCH: float = date_to_epoch(END_DATE)
 OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
@@ -35,7 +37,7 @@ LANGS_TRANSL = ["Italiano", "English", "Français", "Deutsch"]
 
 def one_commons(main_items: list[dict], other_items: dict,
                 simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalents.LINKED) -> tuple[
-                dict, list[tuple]]:
+    dict, list[tuple]]:
     """
     Given a set of items, compute how much news the other sections has in common with it
     :param main_items: list of items "pivot"
@@ -62,7 +64,7 @@ def one_commons(main_items: list[dict], other_items: dict,
 
 
 def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalents.LINKED,
-                    find_unpaired: bool = True) -> dict[dict]:
+                    find_unpaired: bool = True, carousels=UseCarousels.YES) -> dict[dict]:
     """
     Run one_commons for each language section
     :param find_unpaired: boolean for computing also the list of the not paired news translations
@@ -73,9 +75,9 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     # Comment for using the links methods
     simil_snapshot_fun = SnapshotEquivalents.LINKED
 
-    outpath_ending = f"{OUT_START_DATE}_{OUT_END_DATE}_LINKED.json"
+    outpath_ending = f"{OUT_START_DATE}_{OUT_END_DATE}{CAROUSEL[carousels.value]}_LINKED.json"
 
-    news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR)
+    news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels)
     commons = {lang: {} for lang in news_items.keys()}
     paired = []
 
@@ -149,21 +151,28 @@ def get_id(news_item: dict) -> frozenset:
     return frozenset([article_id] + translations_id)
 
 
-def get_cardinalities(news_items: list[dict], to_out: bool = False) -> dict[frozenset, list[dict]]:
+def get_cardinalities(news_items: list[dict], to_out: bool = False, carousels: int = 2) -> dict[frozenset, list[dict]]:
     unique_articles = {}
     for news_item in news_items:
+        already_appended = []
         article_id = get_id(news_item)
         found_ids = unique_articles.keys()
         is_found = False
         for found_id in found_ids:
             intersection = article_id.intersection(found_id)
             if intersection == found_id or intersection == article_id:
+                if intersection == article_id:
+                    article_id = found_id
+                if intersection == found_id:
+                    unique_articles[article_id] = unique_articles.pop(found_id)
                 is_found = True
-                article_id = found_id
+                already_appended = [art["item_url"] for art in unique_articles[article_id]]
                 break
         if not is_found:
             unique_articles[article_id] = []
-        unique_articles[article_id].append(news_item)
+
+        if news_item["item_url"] not in already_appended:
+            unique_articles[article_id].append(news_item)
     if to_out:
         output_unique_articles = {}
         for article_id, articles in unique_articles.items():
@@ -171,17 +180,34 @@ def get_cardinalities(news_items: list[dict], to_out: bool = False) -> dict[froz
         with open(f"../out/ids_with_cardinalities/{OUT_START_DATE}_{OUT_END_DATE}.json", "w", encoding="utf-8") as f:
             json.dump(output_unique_articles, f, indent=4)
             f.write("\n")
-    return unique_articles
+    # This is for removing eventual duplicates
+    to_ret = {key: [] for key in unique_articles.keys()}
+    for cycling_id in unique_articles.keys():
+        print(cycling_id)
+        already_found = []
+        for article in unique_articles[cycling_id]:
+            if article["lang"] not in already_found:
+                already_found.append(article["lang"])
+                to_ret[cycling_id].append(article)
+    for cycling_id in unique_articles.keys():
+        print(f"{cycling_id} : {len(unique_articles[cycling_id])} -> {len(to_ret[cycling_id])}")
+        if len(to_ret[cycling_id]) > 4:
+            print([new["item_url"] for new in to_ret[cycling_id]])
+    return to_ret
 
 
 def get_one_cardinality(article: dict, unique_articles: dict[frozenset, list[dict]]) -> int:
     for article_id in unique_articles.keys():
         intersection = get_id(article).intersection(article_id)
-        if intersection == article_id or intersection == get_id(article):
+        if intersection == article_id:
+            return len(unique_articles[get_id(article)])
+        if intersection == get_id(article):
             return len(unique_articles[article_id])
+    return 0
 
 
-def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True) -> dict[str, dict]:
+def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, carousels=UseCarousels.YES) -> dict[
+    str, dict]:
     """
     Given a range of time, get the cardinalities of the set of news translated respectively in
     two, three or four different languages
@@ -190,7 +216,7 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True) -> 
     :return: A dictionary with one key for each possible number of citations and its cardinality and a dictionary
     with the same sets but grouped by languages
     """
-    news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR)
+    news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels)
     listed_items = []
     for lang in news_items.keys():
         for article in news_items[lang]:
@@ -202,6 +228,10 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True) -> 
 
     for lang in news_items.keys():
         for news_item in news_items[lang]:
+            card = get_one_cardinality(news_item, unique_articles)
+            if card > 4:
+                print(news_item["item_url"])
+                print(card)
             language_cardinalities[lang][str(get_one_cardinality(news_item, unique_articles))] += 1
     for unique_article in unique_articles.keys():
         overall_cardinalities[str(len(unique_articles[unique_article]))] += 1
@@ -240,17 +270,17 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True) -> 
         out_triples = {'-'.join(triple): cardinality for triple, cardinality in triples_cardinalities.items()}
         to_print["by_triples"] = out_triples
 
-    with open(f"../out/cardinalities_stats/{OUT_START_DATE}_{OUT_END_DATE}.json", "w", encoding="utf-8") as f:
+    with open(f"../out/cardinalities_stats/{OUT_START_DATE}_{OUT_END_DATE}{CAROUSEL[carousels.value]}.json", "w",
+              encoding="utf-8") as f:
         json.dump(to_print, f, indent=4)
         f.write("\n")
     return to_print
 
 
 def main():
-    # run_one_commons()
-    # get_versions_cardinalities()
-    # get_unpaired(get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR))
-    get_cardinalities_stat()
+    # run_one_commons(carousels=UseCarousels.YES)
+    # # get_unpaired(get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR))
+    get_cardinalities_stat(carousels=UseCarousels.YES)
 
 
 if __name__ == '__main__':

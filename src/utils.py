@@ -4,6 +4,7 @@ import spacy
 from spacy.tokens import Doc
 from typing import Union
 from datetime import datetime
+from enum import Enum
 
 SPACY_PROCESSOR = spacy.load("en_core_web_md")
 
@@ -15,6 +16,10 @@ PROCESSED_CONTENT_FIELD = "cont_nlp"
 SIMILARITY_THRESHOLD = 0.9997
 
 
+class UseCarousels(Enum):
+    YES = 2
+    ONLY = 1
+    NO = 0
 
 
 def date_to_epoch(date: str) -> float:
@@ -35,11 +40,12 @@ def in_range_epoch(file: str, start_epoch: float, end_epoch: float) -> bool:
     return start_epoch <= file_epoch <= end_epoch
 
 
-def get_lang_items(dir_to_check: str, lang: str) -> list[dict]:
+def get_lang_items(dir_to_check: str, lang: str, carousels=UseCarousels.YES) -> list[dict]:
     """
     Get all items in a given language section
     :param dir_to_check: directory of scraped items
     :param lang: language of items to be gathered
+    :param carousels: how to handle carousels
     :return: list of items in lang
     """
     items = []
@@ -50,18 +56,24 @@ def get_lang_items(dir_to_check: str, lang: str) -> list[dict]:
             news = json.load(f)
             for new in news:
                 if new["item_url"] not in urls:
+                    if carousels == UseCarousels.NO and new["carousel"]:
+                        continue
+                    if carousels == UseCarousels.ONLY and not new["carousel"]:
+                        continue
                     urls.append(new["item_url"])
                     items.append(new)
     return items
 
 
-def get_lang_items(dir_to_check: str, lang: str, start_epoch: float, end_epoch: float) -> list[dict]:
+def get_lang_items(dir_to_check: str, lang: str, start_epoch: float, end_epoch: float, carousels=UseCarousels.YES) \
+        -> list[dict]:
     """
     Get all items in a given language section in a given time range
     :param dir_to_check: directory of scraped items
     :param lang: language of items to be gathered
     :param start_epoch: start of the time range
     :param end_epoch: end of the time range
+    :param carousels: how to handle carousels
     :return: list of items in lang
     """
     items = []
@@ -73,8 +85,12 @@ def get_lang_items(dir_to_check: str, lang: str, start_epoch: float, end_epoch: 
                 news = json.load(f)
                 for new in news:
                     if new["item_url"] not in urls:
-                            urls.append(new["item_url"])
-                            items.append(new)
+                        if carousels == UseCarousels.NO and new["carousel"]:
+                            continue
+                        if carousels == UseCarousels.ONLY and not new["carousel"]:
+                            continue
+                        urls.append(new["item_url"])
+                        items.append(new)
     return items
 
 
@@ -92,29 +108,32 @@ def get_all_items(dir_to_check: str = NEWS_DIR) -> list[dict]:
     return items
 
 
-def get_dict_items(dir_to_check: str = NEWS_DIR) -> dict:
+def get_dict_items(dir_to_check: str = NEWS_DIR, carousels=2) -> dict:
     """
     Get all news items grouped by language section
     :param dir_to_check: where to look for news items
+    :param carousels: how to handle carousels
     :return: List of sections with associated items
     """
     items = {}
     for lang in os.listdir(dir_to_check):
-        items[lang] = get_lang_items(dir_to_check, lang)
+        items[lang] = get_lang_items(dir_to_check, lang, carousels = carousels)
     return items
 
 
-def get_dict_items(start_epoch: float, end_epoch: float, dir_to_check: str = NEWS_DIR) -> dict:
+def get_dict_items(start_epoch: float, end_epoch: float, dir_to_check: str = NEWS_DIR, carousels=UseCarousels.YES) \
+        -> dict:
     """
     Get all news items grouped by language section in a given time range
     :param start_epoch: start of the time range
     :param end_epoch: end of the time range
     :param dir_to_check: where to look for news items
+    :param carousels: how to handle carousels
     :return: List of sections with associated items
     """
     items = {}
     for lang in os.listdir(dir_to_check):
-        items[lang] = get_lang_items(dir_to_check, lang, start_epoch, end_epoch)
+        items[lang] = get_lang_items(dir_to_check, lang, start_epoch, end_epoch, carousels = carousels)
     return items
 
 
@@ -152,8 +171,6 @@ def get_all_translations(news_items: dict) -> dict:
                 if trans_lang in CONSIDERED_LANGUAGES:
                     translations[lang][trans_lang] = item["translations"][trans_lang]
     return translations
-
-
 
 
 def has_equivalent_in_snapshot_linked(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) \
