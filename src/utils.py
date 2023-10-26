@@ -15,6 +15,7 @@ TRANSLATED_NEWS_DIR = f"{BASE_DIR}/../translated_data"
 PROCESSED_CONTENT_FIELD = "cont_nlp"
 SIMILARITY_THRESHOLD = 0.9997
 
+ORIGINAL_TO_LANG = {"de": "GER", "it": "ITA", "fr": "FRE", "en": "ENG"}
 
 class UseCarousels(Enum):
     YES = 2
@@ -174,7 +175,7 @@ def get_all_translations(news_items: dict) -> dict:
 
 
 def has_equivalent_in_snapshot_linked(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) \
-        -> Union[bool, str]:
+        -> tuple[bool, str]:
     """
     Check if a news item has an equivalent in a snapshot using translations links of Swissinfo
     """
@@ -205,7 +206,7 @@ def are_similar(news_A: dict, news_B: dict) -> bool:
 
 
 def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict], simil_cache: dict = None) \
-        -> Union[bool, str]:
+        -> tuple[bool, str]:
     """
     Check if a news item has an equivalent in a snapshot by using SpaCy similarity
     :param main_news: items to be checked
@@ -238,3 +239,42 @@ def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict],
 
             simil_cache[idx] = False
     return False, ""
+
+
+def get_originals_data(start_epoch: float, end_epoch: float, check_dir: str = NEWS_DIR, carousels=UseCarousels.YES) \
+        -> dict:
+    """
+    Get a dict of items grouped by original news language
+    :param start_epoch: the starting time of the time range
+    :param end_epoch: the ending time of the time range
+    :param check_dir: where to look for news items
+    :param carousels: how to handle carousels
+    :return: dict where keys are languages and values are news which are originally written in that language
+    """
+    items = get_dict_items(start_epoch, end_epoch, check_dir, carousels)
+    originals = {key: [] for key in items.keys()}
+    lens = {key: len(items[key]) for key in items.keys()}
+    lens["total"] = sum([lens[key] for key in lens.keys()])
+    for lang in items.keys():
+        for item in items[lang]:
+            original_lang = item["translations"]["Original"]
+            if original_lang == "Unk":
+                originals[item["lang"].upper()].append(item)
+            elif original_lang in ORIGINAL_TO_LANG.keys():
+                originals[ORIGINAL_TO_LANG[original_lang]].append(item)
+    originals_lens = {key: len(originals[key]) for key in originals.keys()}
+
+    carousels_string = ""
+    if carousels == UseCarousels.ONLY:
+        carousels_string = "_only_carousels"
+    elif carousels == UseCarousels.NO:
+        carousels_string = "_without_carousels"
+
+    output_path = f"{BASE_DIR}/../out/originals_data/originals_data_{start_epoch}_{end_epoch}{carousels_string}.json"
+    output = {"info": {"total_lens": lens, "originals_lens": originals_lens}, "data": originals}
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(output, f, indent=4)
+        f.write("\n")
+
+    return output
+

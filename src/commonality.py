@@ -2,10 +2,9 @@ import os
 import json
 import itertools
 from utils import NEWS_DIR, TRANSLATED_NEWS_DIR, UseCarousels
-from utils import get_dict_items, get_all_translations, date_to_epoch
+from utils import get_dict_items, date_to_epoch, get_originals_data
 from utils import has_equivalent_in_snapshot_linked, has_equivalent_in_snapshot_spacy
 from enum import Enum
-from typing import Union
 
 
 class SnapshotEquivalents(Enum):
@@ -36,8 +35,7 @@ LANGS_TRANSL = ["Italiano", "English", "Français", "Deutsch"]
 
 
 def one_commons(main_items: list[dict], other_items: dict,
-                simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalents.LINKED) -> tuple[
-    dict, list[tuple]]:
+                simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalents.LINKED) -> tuple[dict, list[tuple]]:
     """
     Given a set of items, compute how much news the other sections has in common with it
     :param main_items: list of items "pivot"
@@ -69,6 +67,7 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     Run one_commons for each language section
     :param find_unpaired: boolean for computing also the list of the not paired news translations
     :param simil_snapshot_fun: function to use for check equivalence in the set
+    :param carousels: how to handle carousels
     :return: a dictionary for each section which states the items in common with each of them
     """
 
@@ -151,7 +150,8 @@ def get_id(news_item: dict) -> frozenset:
     return frozenset([article_id] + translations_id)
 
 
-def get_cardinalities(news_items: list[dict], to_out: bool = False, carousels: int = 2) -> dict[frozenset, list[dict]]:
+def get_cardinalities(news_items: list[dict], to_out: bool = False, carousels=UseCarousels.YES) \
+        -> dict[frozenset, list[dict]]:
     unique_articles = {}
     for news_item in news_items:
         already_appended = []
@@ -206,14 +206,15 @@ def get_one_cardinality(article: dict, unique_articles: dict[frozenset, list[dic
     return 0
 
 
-def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, carousels=UseCarousels.YES) -> dict[
-    str, dict]:
+def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, carousels=UseCarousels.YES) \
+        -> dict[str, dict]:
     """
     Given a range of time, get the cardinalities of the set of news translated respectively in
     two, three or four different languages
     :param by_couples: boolean for computing the cardinalities of the set of news translated in two different languages
-    :param by_triples: boolean for computing the cardinalities of the set of news translated in three different languages
+    :param by_triples: boolean for computing the cardinalities of the set of news translated in three different language
     :return: A dictionary with one key for each possible number of citations and its cardinality and a dictionary
+    :param carousels: How to handle carousels
     with the same sets but grouped by languages
     """
     news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels)
@@ -280,7 +281,9 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, car
 def main():
     # run_one_commons(carousels=UseCarousels.YES)
     # # get_unpaired(get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR))
-    get_cardinalities_stat(carousels=UseCarousels.YES)
+    # get_cardinalities_stat(carousels=UseCarousels.YES)
+    for carousels in UseCarousels:
+        get_originals_data(START_EPOCH, END_EPOCH, WORKING_DIR, carousels)
 
 
 if __name__ == '__main__':

@@ -8,11 +8,11 @@ CHOSEN_METHOD = METHODS[0]
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = f"{BASE_DIR}\\..\\..\\out\\commonality_stats"
-FILE_DIR = f"2023-10-19T00.00.00_2023-10-23T23.59.00_no_carousels_LINKED.json"
+FILE_DIR = f"2023-10-19T00.00.00_2023-10-23T23.59.00_LINKED.json"
 FULL_DIR = f"{OUT_DIR}\\{FILE_DIR}"
 
 
-RATIO = False
+RATIO = True
 
 
 def main():
