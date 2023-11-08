@@ -125,7 +125,7 @@ def translate_all():
         for file in os.listdir(f"{NEWS_DIR}/{language}"):
             check_dir = os.listdir(f"{OUT_DIR}/{language}")
             if file.endswith(".json"):
-                if file not in check_dir:
+                if file in check_dir:
                     print("Already Found")
                     continue
                 snap_dir = f"{NEWS_DIR}/{language}/{file}"
