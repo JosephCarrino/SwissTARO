@@ -6,7 +6,7 @@ from typing import Union
 from datetime import datetime
 from enum import Enum
 
-SPACY_PROCESSOR = spacy.load("en_core_web_md")
+# SPACY_PROCESSOR = spacy.load("en_core_web_md")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 NEWS_DIR = f"{BASE_DIR}/../data"
@@ -241,14 +241,16 @@ def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict],
     return False, ""
 
 
-def get_originals_data(start_epoch: float, end_epoch: float, check_dir: str = NEWS_DIR, carousels=UseCarousels.YES) \
-        -> dict:
+def get_originals_data(start_epoch: float, end_epoch: float, check_dir: str = NEWS_DIR, carousels=UseCarousels.YES,
+                       start_date: str = "", end_date: str = "") -> dict:
     """
     Get a dict of items grouped by original news language
     :param start_epoch: the starting time of the time range
     :param end_epoch: the ending time of the time range
     :param check_dir: where to look for news items
     :param carousels: how to handle carousels
+    :param start_date: starting date for output title
+    :param end_date: ending date for output title
     :return: dict where keys are languages and values are news which are originally written in that language
     """
     items = get_dict_items(start_epoch, end_epoch, check_dir, carousels)
@@ -266,15 +268,13 @@ def get_originals_data(start_epoch: float, end_epoch: float, check_dir: str = NE
 
     carousels_string = ""
     if carousels == UseCarousels.ONLY:
-        carousels_string = "_only_carousels"
+        carousels_string = "_carousels"
     elif carousels == UseCarousels.NO:
-        carousels_string = "_without_carousels"
+        carousels_string = "_no_carousels"
 
-    output_path = f"{BASE_DIR}/../out/originals_data/originals_data_{start_epoch}_{end_epoch}{carousels_string}.json"
+    output_path = f"{BASE_DIR}/../out/originals_data/{start_date}_{end_date}{carousels_string}.json"
     output = {"info": {"total_lens": lens, "originals_lens": originals_lens}, "data": originals}
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=4)
         f.write("\n")
-
     return output
-

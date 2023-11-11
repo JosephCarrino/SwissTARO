@@ -2,11 +2,14 @@ import nltk
 import os
 import gensim
 import re
+import pyLDAvis
+import pyLDAvis.gensim
 import gensim.corpora as corpora
+import matplotlib.pyplot as plt
 from pprint import pprint
 from nltk.corpus import stopwords
 from gensim.utils import simple_preprocess
-from utils import get_dict_items
+from utils import get_dict_items, get_originals_data
 from utils import NEWS_DIR, TRANSLATED_NEWS_DIR, UseCarousels
 from utils import date_to_epoch
 
@@ -24,17 +27,30 @@ OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
 OUT_END_DATE = END_DATE.replace(' ', 'T').replace(':', '.')
 OUT_PATH = f"{OUT_START_DATE}_{OUT_END_DATE}"
 
-NUM_TOPICS = 30
+NUM_TOPICS = 5
+
+USE_ORIGINALS = True
 
 
 def main():
     models = full_pipe()
+    for lang in models.keys():
+        LDAvis_prepared = pyLDAvis.gensim.prepare(models[lang]["model"], models[lang]["corpus"], models[lang]["id2word"], sort_topics=False)
+        pyLDAvis.save_html(LDAvis_prepared, f"../visualization/topic_modeling/{lang}/{'originals_' if USE_ORIGINALS else ''}{OUT_PATH}.html")
+        for lang_2 in models.keys():
+            if lang != lang_2:
+                compute_differences(models[lang]["model"], models[lang_2]["model"])
 
-def full_pipe():
-    news_dict = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=UseCarousels.NO)
+
+def full_pipe(use_originals=USE_ORIGINALS):
+    if use_originals:
+        news_dict = get_originals_data(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=UseCarousels.NO,
+                                       start_date=OUT_START_DATE, end_date=OUT_END_DATE)["data"]
+    else:
+        news_dict = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=UseCarousels.NO)
     news_dict = re_preprocessing(news_dict)
     data_words = nltk_preprocessing(news_dict)
-    models = {}
+    output = {lang: {"model": None, "corpus": None, "id2word": None} for lang in data_words.keys()}
     for lang in data_words.keys():
         corpus, id2word = to_tdf(data_words[lang])
         lda_model = gensim.models.LdaMulticore(corpus=corpus,
@@ -51,8 +67,10 @@ def full_pipe():
                                                            coherence='c_v')
         coherence_lda = coherence_model_lda.get_coherence()
         print('\nCoherence Score: ', coherence_lda)
-        models[lang] = lda_model
-    return models
+        output[lang]["model"] = lda_model
+        output[lang]["corpus"] = corpus
+        output[lang]["id2word"] = id2word
+    return output
 
 
 
@@ -90,6 +108,19 @@ def to_tdf(data_words: list) -> list:
     texts = data_words
     corpus = [id2word.doc2bow(text) for text in texts]
     return corpus, id2word
+
+
+def compute_differences(first_model, second_model):
+    mdiff, annotation = first_model.diff(second_model, distance='jaccard', num_words=50)
+    plot_difference(mdiff, title="Topic difference between models", annotation=annotation)
+
+
+def plot_difference(mdiff, title="", annotation=None):
+    fig, ax = plt.subplots(figsize=(18, 14))
+    data = ax.imshow(mdiff, cmap='RdBu_r', origin='lower')
+    plt.title(title)
+    plt.colorbar(data)
+    plt.show()
 
 
 if __name__ == "__main__":

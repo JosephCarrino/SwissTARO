@@ -1,16 +1,16 @@
 
 import json
 import os
-from utils import NEWS_DIR, UseCarousels
+from utils import NEWS_DIR, TRANSLATED_NEWS_DIR, UseCarousels
 from utils import get_dict_items, date_to_epoch
 from utils import get_originals_data
 from commonality import one_commons
 
-WORKING_DIR = NEWS_DIR
+WORKING_DIR = TRANSLATED_NEWS_DIR
 
 LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
-START_DATE = "2023-10-19 00:00:00"
+START_DATE = "2023-10-23 23:45:00"
 END_DATE = "2023-10-23 23:59:00"
 START_EPOCH: float = date_to_epoch(START_DATE)
 END_EPOCH: float = date_to_epoch(END_DATE)
@@ -41,7 +41,8 @@ def main():
 def get_flows(carousels=UseCarousels.YES) -> dict:
     news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels)
     flows = {key_1: {} for key_1 in news_items.keys()}
-    originals = get_originals_data(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels)["data"]
+    originals = get_originals_data(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels, start_date=OUT_START_DATE,
+                                   end_date=OUT_END_DATE)["data"]
     for starting_lang in flows.keys():
         to_check_items = originals[starting_lang]
         temp_items = news_items.copy()
