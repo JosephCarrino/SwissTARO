@@ -4,7 +4,7 @@ from argostranslate import translate
 from googletrans import Translator
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-NEWS_DIR = f"{BASE_DIR}/../data"
+NEWS_DIR = f"{BASE_DIR}/../../SwissScrape/scraped_items"
 
 OUT_DIR = f"{BASE_DIR}/../translated_data"
 
@@ -119,6 +119,8 @@ def full_pipe_one_snap(snap_dir: str) -> list[dict]:
 
 def translate_all():
     for language in os.listdir(NEWS_DIR):
+        if language == "SPA":
+            continue
         global ALREADY_TRANSLATED
         ALREADY_TRANSLATED = {}
         print(language)
@@ -126,7 +128,7 @@ def translate_all():
             check_dir = os.listdir(f"{OUT_DIR}/{language}")
             if file.endswith(".json"):
                 if file in check_dir:
-                    print("Already Found")
+                    # print("Already Found")
                     continue
                 snap_dir = f"{NEWS_DIR}/{language}/{file}"
                 translated_snap = full_pipe_one_snap(snap_dir)

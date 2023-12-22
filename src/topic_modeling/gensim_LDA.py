@@ -22,8 +22,8 @@ WORKING_DIR = TRANSLATED_NEWS_DIR
 
 LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
-START_DATE = "2023-10-18 16:15:00"
-END_DATE = "2023-10-18 16:29:00"
+START_DATE = "2023-11-15 16:15:00"
+END_DATE = "2023-11-15 16:29:00"
 START_EPOCH: float = date_to_epoch(START_DATE)
 END_EPOCH: float = date_to_epoch(END_DATE)
 OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
@@ -44,9 +44,9 @@ def main():
         pyLDAvis.save_html(LDAvis_prepared,
                            f"../visualization/topic_modeling/{lang}/{'NER_' if USE_NER else ''}"
                            f"{'originals_' if USE_ORIGINALS else ''}{OUT_PATH}.html")
-        for lang_2 in models.keys():
-            if lang != lang_2:
-                compute_differences(models[lang]["model"], models[lang_2]["model"])
+        # for lang_2 in models.keys():
+        #     if lang != lang_2:
+        #         compute_differences(models[lang]["model"], models[lang_2]["model"])
 
 
 def full_pipe(use_originals=USE_ORIGINALS, use_NER=USE_NER):
