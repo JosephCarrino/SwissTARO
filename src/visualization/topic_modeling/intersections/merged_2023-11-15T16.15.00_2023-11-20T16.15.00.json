@@ -1,0 +1,86 @@
+{
+    "ENG-FRE": [
+        3.33,
+        [
+            "year"
+        ]
+    ],
+    "ENG-GER": [
+        23.33,
+        [
+            "use",
+            "Lancet",
+            "work",
+            "cannabis",
+            "year",
+            "exhibition",
+            "drone"
+        ]
+    ],
+    "ENG-ITA": [
+        16.67,
+        [
+            "language",
+            "country",
+            "year",
+            "transparency",
+            "gold"
+        ]
+    ],
+    "FRE-GER": [
+        21.74,
+        [
+            "right",
+            "Switzerland",
+            "party",
+            "election",
+            "year"
+        ]
+    ],
+    "FRE-ITA": [
+        7.14,
+        [
+            "year",
+            "Switzerland"
+        ]
+    ],
+    "GER-ITA": [
+        10.71,
+        [
+            "year",
+            "Switzerland",
+            "hydrogen"
+        ]
+    ],
+    "ENG-FRE-GER": [
+        3.33,
+        [
+            "year"
+        ]
+    ],
+    "ENG-FRE-ITA": [
+        3.33,
+        [
+            "year"
+        ]
+    ],
+    "ENG-GER-ITA": [
+        3.33,
+        [
+            "year"
+        ]
+    ],
+    "FRE-GER-ITA": [
+        7.14,
+        [
+            "year",
+            "Switzerland"
+        ]
+    ],
+    "ENG-FRE-GER-ITA": [
+        3.33,
+        [
+            "year"
+        ]
+    ]
+}

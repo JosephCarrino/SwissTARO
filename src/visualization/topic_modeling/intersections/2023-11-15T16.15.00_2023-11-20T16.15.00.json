@@ -1,0 +1,352 @@
+{
+    "2023-11-15": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            20.0,
+            [
+                "Lancet",
+                "drone"
+            ]
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-16": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "drone"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "transparency",
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-17": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            20.0,
+            [
+                "exhibition",
+                "drone"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-18": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "exhibition"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-19": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "year",
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-20": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "FRE-GER": [
+            40.0,
+            [
+                "election",
+                "year",
+                "party",
+                "right"
+            ]
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "ENG-FRE-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ]
+    },
+    "average": {
+        "ENG-FRE": 1.67,
+        "ENG-GER": 11.67,
+        "ENG-ITA": 11.67,
+        "FRE-GER": 8.33,
+        "FRE-ITA": 5.0,
+        "GER-ITA": 10.0,
+        "ENG-FRE-GER": 1.67,
+        "ENG-FRE-ITA": 1.67,
+        "ENG-GER-ITA": 1.67,
+        "FRE-GER-ITA": 1.67,
+        "ENG-FRE-GER-ITA": 1.67
+    }
+}

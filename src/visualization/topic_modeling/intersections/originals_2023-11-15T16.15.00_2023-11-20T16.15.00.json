@@ -1,0 +1,454 @@
+{
+    "2023-11-15": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            20.0,
+            [
+                "Russia",
+                "hydrogen"
+            ]
+        ],
+        "FRE-ITA": [
+            20.0,
+            [
+                "Russia",
+                "hydrogen"
+            ]
+        ],
+        "GER-ITA": [
+            70.0,
+            [
+                "Kosovo",
+                "Russian",
+                "Russia",
+                "Switzerland",
+                "component",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            20.0,
+            [
+                "Russia",
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ]
+    },
+    "2023-11-16": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "exhibition",
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            50.0,
+            [
+                "Russia",
+                "Russian",
+                "Switzerland",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "FRE-ITA": [
+            40.0,
+            [
+                "Russia",
+                "Russian",
+                "sanction",
+                "hydrogen"
+            ]
+        ],
+        "GER-ITA": [
+            40.0,
+            [
+                "Russia",
+                "Russian",
+                "Kosovo",
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            30.0,
+            [
+                "Russian",
+                "Russia",
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-17": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "French"
+            ]
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "exhibition",
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            70.0,
+            [
+                "Lancet",
+                "Russia",
+                "Russian",
+                "sanction",
+                "component",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "FRE-ITA": [
+            30.0,
+            [
+                "Russian",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "GER-ITA": [
+            40.0,
+            [
+                "Russian",
+                "Kosovo",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            30.0,
+            [
+                "Russian",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-18": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "exhibition",
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            20.0,
+            [
+                "Russia",
+                "hydrogen"
+            ]
+        ],
+        "FRE-ITA": [
+            30.0,
+            [
+                "Russia",
+                "party",
+                "hydrogen"
+            ]
+        ],
+        "GER-ITA": [
+            50.0,
+            [
+                "work",
+                "Russian",
+                "Russia",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            20.0,
+            [
+                "Russia",
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-19": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "work"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "exhibition",
+                "gold"
+            ]
+        ],
+        "FRE-GER": [
+            70.0,
+            [
+                "Kosovo",
+                "Russia",
+                "Russian",
+                "Switzerland",
+                "component",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "FRE-ITA": [
+            60.0,
+            [
+                "Russia",
+                "Russian",
+                "Switzerland",
+                "sanction",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "GER-ITA": [
+            50.0,
+            [
+                "Russia",
+                "Russian",
+                "Switzerland",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            50.0,
+            [
+                "Russian",
+                "Russia",
+                "Switzerland",
+                "hydrogen",
+                "drone"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-20": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "exhibition"
+            ]
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "exhibition",
+                "party"
+            ]
+        ],
+        "FRE-GER": [
+            60.0,
+            [
+                "Kosovo",
+                "work",
+                "Russian",
+                "Russia",
+                "component",
+                "drone"
+            ]
+        ],
+        "FRE-ITA": [
+            50.0,
+            [
+                "Russia",
+                "Russian",
+                "sanction",
+                "exhibition",
+                "hydrogen"
+            ]
+        ],
+        "GER-ITA": [
+            20.0,
+            [
+                "Russian",
+                "Russia"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            10.0,
+            [
+                "exhibition"
+            ]
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            20.0,
+            [
+                "Russia",
+                "Russian"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "average": {
+        "ENG-FRE": 6.67,
+        "ENG-GER": 5.0,
+        "ENG-ITA": 18.33,
+        "FRE-GER": 48.33,
+        "FRE-ITA": 38.33,
+        "GER-ITA": 45.0,
+        "ENG-FRE-GER": 3.33,
+        "ENG-FRE-ITA": 3.33,
+        "ENG-GER-ITA": 1.67,
+        "FRE-GER-ITA": 28.33,
+        "ENG-FRE-GER-ITA": 1.67
+    }
+}

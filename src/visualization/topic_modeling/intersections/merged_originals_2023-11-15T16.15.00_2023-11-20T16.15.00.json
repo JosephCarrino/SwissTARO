@@ -1,0 +1,134 @@
+{
+    "ENG-FRE": [
+        27.59,
+        [
+            "work",
+            "Switzerland",
+            "party",
+            "brand",
+            "election",
+            "French",
+            "exhibition",
+            "hydrogen"
+        ]
+    ],
+    "ENG-GER": [
+        15.38,
+        [
+            "hydrogen",
+            "Switzerland",
+            "work",
+            "referendum"
+        ]
+    ],
+    "ENG-ITA": [
+        30.77,
+        [
+            "work",
+            "cannabis",
+            "Switzerland",
+            "party",
+            "year",
+            "gold",
+            "exhibition",
+            "hydrogen"
+        ]
+    ],
+    "FRE-GER": [
+        37.93,
+        [
+            "Lancet",
+            "Kosovo",
+            "work",
+            "Russian",
+            "Switzerland",
+            "Russia",
+            "sanction",
+            "war",
+            "component",
+            "hydrogen",
+            "drone"
+        ]
+    ],
+    "FRE-ITA": [
+        44.83,
+        [
+            "Kosovo",
+            "work",
+            "Russian",
+            "Switzerland",
+            "party",
+            "Russia",
+            "energy",
+            "sanction",
+            "company",
+            "component",
+            "exhibition",
+            "hydrogen",
+            "drone"
+        ]
+    ],
+    "GER-ITA": [
+        40.0,
+        [
+            "Kosovo",
+            "work",
+            "Russian",
+            "Switzerland",
+            "Russia",
+            "sanction",
+            "component",
+            "child",
+            "hydrogen",
+            "drone"
+        ]
+    ],
+    "ENG-FRE-GER": [
+        10.34,
+        [
+            "hydrogen",
+            "Switzerland",
+            "work"
+        ]
+    ],
+    "ENG-FRE-ITA": [
+        17.24,
+        [
+            "work",
+            "Switzerland",
+            "party",
+            "exhibition",
+            "hydrogen"
+        ]
+    ],
+    "ENG-GER-ITA": [
+        11.54,
+        [
+            "work",
+            "Switzerland",
+            "hydrogen"
+        ]
+    ],
+    "FRE-GER-ITA": [
+        31.03,
+        [
+            "Kosovo",
+            "work",
+            "Russia",
+            "Russian",
+            "Switzerland",
+            "sanction",
+            "component",
+            "hydrogen",
+            "drone"
+        ]
+    ],
+    "ENG-FRE-GER-ITA": [
+        10.34,
+        [
+            "work",
+            "Switzerland",
+            "hydrogen"
+        ]
+    ]
+}
