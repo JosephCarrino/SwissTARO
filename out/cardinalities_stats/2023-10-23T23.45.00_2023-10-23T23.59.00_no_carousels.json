@@ -32,17 +32,17 @@
         }
     },
     "by_couples": {
-        "ita-eng": 1,
-        "ita-fre": 4,
-        "ita-ger": 1,
-        "eng-fre": 0,
-        "eng-ger": 0,
-        "fre-ger": 1
+        "ita-eng": 9,
+        "ita-fre": 17,
+        "ita-ger": 14,
+        "eng-fre": 10,
+        "eng-ger": 10,
+        "fre-ger": 16
     },
     "by_triples": {
-        "ita-eng-fre": 0,
-        "ita-eng-ger": 0,
-        "ita-fre-ger": 5,
-        "eng-fre-ger": 2
+        "ita-eng-fre": 8,
+        "ita-eng-ger": 8,
+        "ita-fre-ger": 13,
+        "eng-fre-ger": 10
     }
 }

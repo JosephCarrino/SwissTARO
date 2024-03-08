@@ -9,7 +9,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = f"{BASE_DIR}{SEPARATOR}..{SEPARATOR}..{SEPARATOR}out{SEPARATOR}cardinalities_stats"
 FILE_DIR = f"2023-10-23T23.45.00_2023-10-23T23.59.00_no_carousels.json"
 FULL_DIR = f"{OUT_DIR}{SEPARATOR}{FILE_DIR}"
-
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
 CAROUSELS = ""
 if "carousels" in FILE_DIR:
     if "no" in FILE_DIR:
@@ -67,10 +68,9 @@ def print_overall(data: dict, xlabel: str = "Different versions", ylabel: str = 
                   title: str = f"Translations of news in different languages{CAROUSELS}"):
     ax = plt.subplot(111)
     bars = ax.bar(data.keys(), data.values())
-    ax.bar_label(bars)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.title(title)
+    ax.bar_label(bars, fontsize=12, weight="bold")
+    plt.xlabel(xlabel, fontsize=12, weight="bold")
+    plt.ylabel(ylabel, fontsize=12, weight="bold")
     plt.show()
 
 def print_languages(data: dict):
@@ -95,11 +95,10 @@ def print_languages(data: dict):
         ax.bar_label(bars4)
 
         if i == len(formatted_data.keys()) - 1:
-            ax.legend([bars1, bars2, bars3, bars4], ["ENG", "FRE", "GER", "ITA"])
-    plt.xticks([1, 2, 3, 4])
-    plt.xlabel("Different versions")
-    plt.ylabel("News")
-    plt.title(f"Translations of news in different versions by language{CAROUSELS}")
+            ax.legend([bars1, bars2, bars3, bars4], ["ENG", "FRE", "GER", "ITA"], fontsize=12)
+    plt.xticks([1, 2, 3, 4], fontsize=12, weight='bold')
+    plt.xlabel("Different versions", fontsize=12, weight='bold')
+    plt.ylabel("News", fontsize=12, weight='bold')
     plt.show()
 
 
@@ -123,11 +122,10 @@ def print_languages_2(data: dict):
         ax.bar_label(bars4)
 
         if i == len(data.keys()) - 1:
-            ax.legend([bars1, bars2, bars3, bars4], ["1 version", "2 versions", "3 versions", "4 versions"])
-    plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"])
-    plt.xlabel("Different versions")
-    plt.ylabel("News")
-    plt.title(f"Translations of news in different versions by language{CAROUSELS}")
+            ax.legend([bars1, bars2, bars3, bars4], ["1 version", "2 versions", "3 versions", "4 versions"], fontsize=12)
+    plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"], fontsize=12, weight='bold')
+    plt.xlabel("Different versions", fontsize=12, weight='bold')
+    plt.ylabel("News", fontsize=12, weight='bold')
     plt.show()
 
 
@@ -151,11 +149,10 @@ def print_languages_stacked(data: dict):
         autolabel(bars4, ax, true_h = data[key]["4"] + bars2[0].get_height() + bars3[0].get_height())
 
         if i == len(data.keys()) - 1:
-            ax.legend([bars1, bars2, bars3, bars4], ["1 version", "2 versions", "3 versions", "4 versions"])
-    plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"])
-    plt.xlabel("Different versions")
-    plt.ylabel("News")
-    plt.title(f"Translations of news in different versions by language{CAROUSELS}")
+            ax.legend([bars1, bars2, bars3, bars4], ["1 version", "2 versions", "3 versions", "4 versions"], fontsize=12)
+    plt.xticks(range(1, 5), ["ENG", "FRE", "GER", "ITA"], fontsize=12, weight='bold')
+    plt.xlabel("Different versions", fontsize=12, weight='bold')
+    plt.ylabel("News", fontsize=12, weight='bold')
     plt.show()
 
 def autolabel(rects, ax, true_h=-1):
@@ -164,7 +161,7 @@ def autolabel(rects, ax, true_h=-1):
         if true_h != -1:
             h = true_h
         ax.text(rect.get_x() + rect.get_width() / 2., h, f"{rect.get_height():.2f}",
-                ha='center', va='bottom')
+                ha='center', va='bottom', fontsize=12, weight="bold")
 
 
 def compute_totals(data: dict) -> list:

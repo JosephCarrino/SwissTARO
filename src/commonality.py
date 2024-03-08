@@ -14,12 +14,12 @@ class SnapshotEquivalents(Enum):
 
 CAROUSEL = ["_no_carousels", "_carousels", ""]
 
-# WORKING_DIR = TRANSLATED_NEWS_DIR
-WORKING_DIR = NEWS_DIR
+WORKING_DIR = TRANSLATED_NEWS_DIR
+# WORKING_DIR = NEWS_DIR
 
 LANGS = [lang for lang in os.listdir(WORKING_DIR)]
 
-START_DATE = "2023-10-19 00:00:00"
+START_DATE = "2023-10-23 23:45:00"
 END_DATE = "2023-10-23 23:59:00"
 START_EPOCH: float = date_to_epoch(START_DATE)
 END_EPOCH: float = date_to_epoch(END_DATE)
@@ -35,7 +35,7 @@ LANGS_TRANSL = ["Italiano", "English", "Français", "Deutsch"]
 
 
 def one_commons(main_items: list[dict], other_items: dict,
-                simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalents.LINKED) -> tuple[dict, list[tuple]]:
+                simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalents.LINKED, simil_cache: dict = None) -> tuple[dict, list[tuple]]:
     """
     Given a set of items, compute how much news the other sections has in common with it
     :param main_items: list of items "pivot"
@@ -48,7 +48,6 @@ def one_commons(main_items: list[dict], other_items: dict,
     # main_items: [{item_1}, {item_2}, ..., {item_n}]
     # other_items: {"FRE": [{item_1},...,{item_m}], "ENG": [{item_1}, ..., item_z}], ...}
 
-    simil_cache = {}
     commons = {lang: 0 for lang in other_items.keys()}
     paired = []
 
@@ -72,17 +71,19 @@ def run_one_commons(simil_snapshot_fun: SnapshotEquivalents = SnapshotEquivalent
     """
 
     # Comment for using the links methods
-    simil_snapshot_fun = SnapshotEquivalents.LINKED
+    # simil_snapshot_fun = SnapshotEquivalents.LINKED
 
-    outpath_ending = f"{OUT_START_DATE}_{OUT_END_DATE}{CAROUSEL[carousels.value]}_LINKED.json"
+    outpath_ending = f"{OUT_START_DATE}_{OUT_END_DATE}{CAROUSEL[carousels.value]}_SPACY.json"
 
     news_items = get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR, carousels=carousels)
     commons = {lang: {} for lang in news_items.keys()}
     paired = []
 
+    simil_cache = {}
+
     # For each language section, compute the commons in other sections
     for lang in commons.keys():
-        commons[lang], pairs = one_commons(news_items[lang], news_items, simil_snapshot_fun=simil_snapshot_fun)
+        commons[lang], pairs = one_commons(news_items[lang], news_items, simil_snapshot_fun=simil_snapshot_fun, simil_cache = simil_cache)
         for pair in pairs:
             paired.append(pair)
 
@@ -173,6 +174,7 @@ def get_cardinalities(news_items: list[dict], to_out: bool = False, carousels=Us
 
         if news_item["item_url"] not in already_appended:
             unique_articles[article_id].append(news_item)
+
     if to_out:
         output_unique_articles = {}
         for article_id, articles in unique_articles.items():
@@ -230,6 +232,7 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, car
     for lang in news_items.keys():
         for news_item in news_items[lang]:
             card = get_one_cardinality(news_item, unique_articles)
+            print(card)
             if card > 4:
                 print(news_item["item_url"])
                 print(card)
@@ -244,17 +247,16 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, car
         langs = [lang.lower() for lang in langs]
         couples = list(itertools.combinations(langs, 2))
         couples_cardinalities = {couple: 0 for couple in couples}
-
         for couple in couples:
             for unique_id, articles in unique_articles.items():
-                if len(articles) == 2:
+                if len(articles) >= 2:
                     true_langs = [article["lang"] for article in articles]
                     if couple[0] in true_langs and couple[1] in true_langs:
                         couples_cardinalities[couple] += 1
 
         out_couples = {'-'.join(couple): cardinality for couple, cardinality in couples_cardinalities.items()}
         to_print["by_couples"] = out_couples
-
+    print(unique_articles.keys())
     if by_triples:
         langs = list(LANG_FORMATTER.values())
         langs = [lang.lower() for lang in langs]
@@ -263,7 +265,7 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, car
 
         for triple in triples:
             for unique_id, articles in unique_articles.items():
-                if len(articles) == 3:
+                if len(articles) >= 3:
                     true_langs = [article["lang"] for article in articles]
                     if triple[0] in true_langs and triple[1] in true_langs and triple[2] in true_langs:
                         triples_cardinalities[triple] += 1
@@ -279,11 +281,11 @@ def get_cardinalities_stat(by_couples: bool = True, by_triples: bool = True, car
 
 
 def main():
-    # run_one_commons(carousels=UseCarousels.YES)
+    # run_one_commons(carousels=UseCarousels.NO, simil_snapshot_fun=SnapshotEquivalents.SPACY)
     # # get_unpaired(get_dict_items(START_EPOCH, END_EPOCH, WORKING_DIR))
-    # get_cardinalities_stat(carousels=UseCarousels.YES)
-    for carousels in UseCarousels:
-        get_originals_data(START_EPOCH, END_EPOCH, WORKING_DIR, carousels)
+    get_cardinalities_stat(carousels=UseCarousels.NO)
+    # for carousels in UseCarousels:
+    #     get_originals_data(START_EPOCH, END_EPOCH, WORKING_DIR, carousels)
 
 
 if __name__ == '__main__':

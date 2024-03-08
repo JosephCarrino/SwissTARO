@@ -4,8 +4,9 @@ import json
 
 SEPARATOR = "\\"
 # SEPARATOR = "/"
-
-START_DATE = "2023-10-23 23:45:00"
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+START_DATE = "2023-10-19 00:00:00"
 END_DATE = "2023-10-23 23:59:00"
 OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
 OUT_END_DATE = END_DATE.replace(' ', 'T').replace(':', '.')
@@ -15,8 +16,8 @@ OUT_DIR_1 = f"{BASE_DIR}{SEPARATOR}..{SEPARATOR}..{SEPARATOR}out{SEPARATOR}origi
 OUT_DIR_2 = f"{BASE_DIR}{SEPARATOR}..{SEPARATOR}..{SEPARATOR}out{SEPARATOR}originals_data{SEPARATOR}"
 OUT_PATH = f"{OUT_START_DATE}_{OUT_END_DATE}"
 
-CAROUSELS = ["_no_carousels", "_carousels", ""]
-CAROUSELS_STRING = [" excluding carousels", " only carousels", ""]
+CAROUSELS = ["_no_carousels"]
+CAROUSELS_STRING = [" excluding carousels"]
 
 LANG_STRING = {"ITA": "Italian",
                "ENG": "English",
@@ -39,13 +40,12 @@ def plot_pies_1(path: str, carousel: str):
     for starting_lang in data.keys():
         labels = list(data[starting_lang].keys())
         values = list(data[starting_lang].values())
-        axs[i][j].pie(values, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90)
-        axs[i][j].set_title(f"From {LANG_STRING[starting_lang]}")
+        axs[i][j].pie(values, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90, textprops={'fontsize': 14})
+        axs[i][j].set_title(f"From {LANG_STRING[starting_lang]}", fontsize=14, weight="bold")
         j += 1
         if j == 2:
             j = 0
             i += 1
-    fig.suptitle(f"Versions translations{carousel}", fontsize=16)
     plt.show()
 
 
@@ -54,8 +54,7 @@ def plot_pies_2(path: str, carousel: str):
         data = json.load(f)
     values = data["info"]["originals_lens"].values()
     labels = data["info"]["originals_lens"].keys()
-    plt.pie(values, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90)
-    plt.title(f"Originals edition{carousel}")
+    plt.pie(values, labels=labels, autopct='%1.1f%%', shadow=False, startangle=90, textprops={'fontsize': 14})
     plt.axis('equal')
     plt.show()
 

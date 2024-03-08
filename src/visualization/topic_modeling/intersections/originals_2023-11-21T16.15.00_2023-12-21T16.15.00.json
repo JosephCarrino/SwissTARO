@@ -1,0 +1,1736 @@
+{
+    "2023-11-21": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "drone"
+            ]
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "election"
+            ]
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-22": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "drone"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "democracy"
+            ]
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "election"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "party"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-23": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "English",
+                "Switzerland"
+            ]
+        ],
+        "FRE-GER": [
+            20.0,
+            [
+                "component",
+                "party"
+            ]
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "party"
+            ]
+        ],
+        "GER-ITA": [
+            20.0,
+            [
+                "democracy",
+                "party"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            10.0,
+            [
+                "party"
+            ]
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-24": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "party"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "democracy"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-25": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            20.0,
+            [
+                "Switzerland",
+                "party"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "democracy"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-26": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "English"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "woman"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "democracy"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-27": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            20.0,
+            [
+                "English",
+                "hydrogen"
+            ]
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "party"
+            ]
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "government"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-28": {
+        "ENG-FRE": [
+            20.0,
+            [
+                "franc",
+                "Swiss"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "English"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "woman"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            20.0,
+            [
+                "school",
+                "people"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-29": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "ENG-GER": [
+            20.0,
+            [
+                "hydrogen",
+                "Switzerland"
+            ]
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-11-30": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            20.0,
+            [
+                "climate",
+                "emission"
+            ]
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-1": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "franc"
+            ]
+        ],
+        "ENG-GER": [
+            40.0,
+            [
+                "English",
+                "hydrogen",
+                "Destinus",
+                "climate"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-2": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            30.0,
+            [
+                "English",
+                "hydrogen",
+                "Destinus"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "GER-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "company"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-3": {
+        "ENG-FRE": [
+            20.0,
+            [
+                "franc",
+                "Swiss"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "climate"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-4": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            30.0,
+            [
+                "climate",
+                "hydrogen",
+                "Destinus"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-5": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "country"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            20.0,
+            [
+                "Switzerland",
+                "Swiss"
+            ]
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-6": {
+        "ENG-FRE": [
+            20.0,
+            [
+                "Switzerland",
+                "Swiss"
+            ]
+        ],
+        "ENG-GER": [
+            30.0,
+            [
+                "hydrogen",
+                "Switzerland",
+                "Swiss"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            20.0,
+            [
+                "Switzerland",
+                "Swiss"
+            ]
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            20.0,
+            [
+                "climate",
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            20.0,
+            [
+                "Switzerland",
+                "Swiss"
+            ]
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-7": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            20.0,
+            [
+                "hydrogen",
+                "energy"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "seat"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-8": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            30.0,
+            [
+                "hydrogen",
+                "energy",
+                "seat"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "energy"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            30.0,
+            [
+                "carbon",
+                "emission",
+                "project"
+            ]
+        ],
+        "GER-ITA": [
+            30.0,
+            [
+                "franc",
+                "energy",
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "energy"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-9": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            30.0,
+            [
+                "hydrogen",
+                "emission",
+                "project"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-10": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            40.0,
+            [
+                "carbon",
+                "hydrogen",
+                "emission",
+                "project"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-11": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "seat"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            40.0,
+            [
+                "carbon",
+                "hydrogen",
+                "emission",
+                "project"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-12": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "country"
+            ]
+        ],
+        "ENG-GER": [
+            30.0,
+            [
+                "hydrogen",
+                "country",
+                "Swiss"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            20.0,
+            [
+                "Switzerland",
+                "country"
+            ]
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            10.0,
+            [
+                "country"
+            ]
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-13": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "country"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-14": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "right"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-15": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "Swiss"
+            ]
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "year"
+            ]
+        ],
+        "FRE-ITA": [
+            0.0,
+            []
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-16": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-17": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-18": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "child"
+            ]
+        ],
+        "ENG-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            20.0,
+            [
+                "EU",
+                "agreement"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "climate"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-19": {
+        "ENG-FRE": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "child"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "EU",
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            10.0,
+            [
+                "Switzerland"
+            ]
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-20": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            0.0,
+            []
+        ],
+        "ENG-ITA": [
+            10.0,
+            [
+                "hydrogen"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            30.0,
+            [
+                "EU",
+                "company",
+                "agreement"
+            ]
+        ],
+        "GER-ITA": [
+            10.0,
+            [
+                "AI"
+            ]
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "2023-12-21": {
+        "ENG-FRE": [
+            0.0,
+            []
+        ],
+        "ENG-GER": [
+            10.0,
+            [
+                "child"
+            ]
+        ],
+        "ENG-ITA": [
+            20.0,
+            [
+                "hydrogen",
+                "plant"
+            ]
+        ],
+        "FRE-GER": [
+            0.0,
+            []
+        ],
+        "FRE-ITA": [
+            10.0,
+            [
+                "EU"
+            ]
+        ],
+        "GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-GER-ITA": [
+            0.0,
+            []
+        ],
+        "FRE-GER-ITA": [
+            0.0,
+            []
+        ],
+        "ENG-FRE-GER-ITA": [
+            0.0,
+            []
+        ]
+    },
+    "average": {
+        "ENG-FRE": 4.84,
+        "ENG-GER": 13.23,
+        "ENG-ITA": 9.35,
+        "FRE-GER": 3.87,
+        "FRE-ITA": 7.42,
+        "GER-ITA": 11.61,
+        "ENG-FRE-GER": 0.97,
+        "ENG-FRE-ITA": 0.97,
+        "ENG-GER-ITA": 3.55,
+        "FRE-GER-ITA": 0.32,
+        "ENG-FRE-GER-ITA": 0.0
+    }
+}

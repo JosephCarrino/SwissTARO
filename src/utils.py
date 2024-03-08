@@ -6,14 +6,14 @@ from typing import Union
 from datetime import datetime
 from enum import Enum
 
-# SPACY_PROCESSOR = spacy.load("en_core_web_md")
+SPACY_PROCESSOR = spacy.load("en_core_web_md")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 NEWS_DIR = f"{BASE_DIR}/../data"
 TRANSLATED_NEWS_DIR = f"{BASE_DIR}/../translated_data"
 
 PROCESSED_CONTENT_FIELD = "cont_nlp"
-SIMILARITY_THRESHOLD = 0.9997
+SIMILARITY_THRESHOLD = 0.9995
 
 ORIGINAL_TO_LANG = {"de": "GER", "it": "ITA", "fr": "FRE", "en": "ENG"}
 
@@ -222,13 +222,15 @@ def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict],
         except:
             return False, ""
     for news_item in news_snapshot:
-        if main_news["title"] is not None and news_item["title"] is not None:
-            title_1 = max(main_news["title"], news_item["title"])
-            title_2 = min(main_news["title"], news_item["title"])
+        if main_news["en_title"] is not None and news_item["en_title"] is not None:
+            title_1 = max(main_news["en_title"], news_item["en_title"])
+            title_2 = min(main_news["en_title"], news_item["en_title"])
             idx = f"{title_1}_{title_2}"
 
             if idx in simil_cache and simil_cache[idx] is True:
                 return True, news_item["item_url"]
+            elif idx in simil_cache and simil_cache[idx] is False:
+                continue
 
             if PROCESSED_CONTENT_FIELD not in news_item:
                 news_item[PROCESSED_CONTENT_FIELD] = process_content(news_item["en_content"])
@@ -236,7 +238,6 @@ def has_equivalent_in_snapshot_spacy(main_news: dict, news_snapshot: list[dict],
             if are_similar(main_news, news_item):
                 simil_cache[idx] = True
                 return True, news_item["item_url"]
-
             simil_cache[idx] = False
     return False, ""
 

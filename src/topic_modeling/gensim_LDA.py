@@ -1,5 +1,3 @@
-import nltk
-import spacy
 import en_core_web_sm
 import os
 import gensim
@@ -14,6 +12,7 @@ from gensim.utils import simple_preprocess
 from utils import get_dict_items, get_originals_data
 from utils import NEWS_DIR, TRANSLATED_NEWS_DIR, UseCarousels
 from utils import date_to_epoch
+import json
 
 # nltk.download('stopwords')
 nlp = en_core_web_sm.load()
@@ -30,23 +29,39 @@ OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
 OUT_END_DATE = END_DATE.replace(' ', 'T').replace(':', '.')
 OUT_PATH = f"{OUT_START_DATE}_{OUT_END_DATE}"
 
+START_END_DATES = [(f"2023-11-{day} 16:15:00", f"2023-11-{day} 16:29:00") for day in range(21, 31)] + [(f"2023-12-{day} 16:15:00", f"2023-12-{day} 16:29:00") for day in range(1, 22)]
+
 NUM_TOPICS = 5
 
-USE_ORIGINALS = True
+USE_ORIGINALS = False
+
 USE_NER = True
 
 
 def main():
-    models = full_pipe()
-    for lang in models.keys():
-        LDAvis_prepared = pyLDAvis.gensim.prepare(models[lang]["model"], models[lang]["corpus"],
-                                                  models[lang]["id2word"], sort_topics=False)
-        pyLDAvis.save_html(LDAvis_prepared,
-                           f"../visualization/topic_modeling/{lang}/{'NER_' if USE_NER else ''}"
-                           f"{'originals_' if USE_ORIGINALS else ''}{OUT_PATH}.html")
-        # for lang_2 in models.keys():
-        #     if lang != lang_2:
-        #         compute_differences(models[lang]["model"], models[lang_2]["model"])
+    for start, end in START_END_DATES:
+        global START_DATE, END_DATE, START_EPOCH, END_EPOCH, OUT_START_DATE, OUT_END_DATE, OUT_PATH
+        START_DATE = start
+        END_DATE = end
+        START_EPOCH = date_to_epoch(START_DATE)
+        END_EPOCH = date_to_epoch(END_DATE)
+        OUT_START_DATE = START_DATE.replace(' ', 'T').replace(':', '.')
+        OUT_END_DATE = END_DATE.replace(' ', 'T').replace(':', '.')
+        OUT_PATH = f"{OUT_START_DATE}_{OUT_END_DATE}"
+        print(f"Processing {OUT_PATH}")
+        models = full_pipe()
+        for lang in models.keys():
+            LDAvis_prepared = pyLDAvis.gensim.prepare(models[lang]["model"], models[lang]["corpus"],
+                                                      models[lang]["id2word"], sort_topics=False)
+            pyLDAvis.save_html(LDAvis_prepared,
+                               f"../visualization/topic_modeling/{lang}/{'NER_' if USE_NER else ''}"
+                               f"{'originals_' if USE_ORIGINALS else ''}{OUT_PATH}.html")
+            pyLDAvis.save_json(LDAvis_prepared, f"../visualization/topic_modeling/{lang}/{'NER_' if USE_NER else ''}"
+                               f"{'originals_' if USE_ORIGINALS else ''}{OUT_PATH}.json")
+            with open(f"../visualization/topic_modeling/{lang}/{'NER_' if USE_NER else ''}"
+                               f"{'originals_' if USE_ORIGINALS else ''}{OUT_PATH}.json", "r") as f:
+                curr_json = json.load(f)
+            print(curr_json["tinfo"]["Term"][:10])
 
 
 def full_pipe(use_originals=USE_ORIGINALS, use_NER=USE_NER):
@@ -60,7 +75,7 @@ def full_pipe(use_originals=USE_ORIGINALS, use_NER=USE_NER):
     else:
         news_dict = re_preprocessing(news_dict)
         data_words = nltk_preprocessing(news_dict)
-    print(data_words)
+    # print(data_words)
     output = {lang: {"model": None, "corpus": None, "id2word": None} for lang in data_words.keys()}
     for lang in data_words.keys():
         corpus, id2word = to_tdf(data_words[lang])

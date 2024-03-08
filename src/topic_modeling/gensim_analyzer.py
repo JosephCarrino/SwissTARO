@@ -28,7 +28,7 @@ def main():
     one_lang = {start: None for start in OUT_START_DATES}
     five_terms = {"orig": {lang: one_lang.copy() for lang in LANGS},
                   "all": {lang: one_lang.copy() for lang in LANGS}}
-    for USE_ORIGINALS, use_originals in zip((False, True), ("orig", "all")):
+    for USE_ORIGINALS, use_originals in zip((False, True), ("all", "orig")):
         for lang in LANGS:
             for out_path, out_date in zip(OUT_PATHS, OUT_START_DATES):
                 with open(f"../visualization/topic_modeling/{lang}/NER_"
